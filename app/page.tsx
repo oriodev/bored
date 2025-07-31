@@ -3,25 +3,26 @@
 import Buttons from "@/components/Buttons";
 import Circles from "@/components/Circles";
 import Speeds from "@/components/Speeds";
-import { CircleState } from "@/types";
+import { CircleColor, CircleState } from "@/types";
 import { useState } from "react";
 
 export default function Home() {
   const [number, setNumber] = useState<number>(0);
 
 
-  const handleComplete = (color: string) => {
-    setNumber(prev => prev + 1);
+  const handleComplete = (colour: CircleColor) => {
+    const amount = circleState[colour].amount;
+    setNumber(prev => prev + amount);
   }
 
   const [circleState, setCircleState] = useState<CircleState>({
-    red: { visible: true, speed: 1, complete: () => handleComplete('red') },
-    orange: { visible: false, speed: 100, complete: () => handleComplete('orange') },
-    yellow: { visible: false, speed: 100, complete: () => handleComplete('yellow') },
-    green: { visible: false, speed: 100, complete: () => handleComplete('green') },
-    blue: { visible: false, speed: 100, complete: () => handleComplete('blue') },
-    pink: { visible: false, speed: 100, complete: () => handleComplete('pink') },
-    purple: { visible: false, speed: 100, complete: () => handleComplete('purple') }
+    red: { visible: true, speed: 1, amount: 10, complete: () => handleComplete('red') },
+    orange: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('orange') },
+    yellow: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('yellow') },
+    green: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('green') },
+    blue: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('blue') },
+    pink: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('pink') },
+    purple: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('purple') }
   });
 
   // multiplier? speed multiplier and amount multiplier
