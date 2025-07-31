@@ -9,17 +9,16 @@ export interface CircleState {
 }
 
 export interface Circle {
-  colour: string;
+  colour: CircleColor;
   unlocked: boolean; 
-  unlockedReq?: number; 
+  unlockedReq: CircleColor | null; 
   auto: boolean;
-  autoReq?: number;
+  autoReq: number;
   speed: number;
   speedMultipier: number;
   costMultiplier: number;
   upgradesUnlocked: number;
   amount: number; 
-  complete: () => void;
 }
 
 export type CircleColor = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'pink' | 'purple';

@@ -3,48 +3,38 @@ import Circle from "./Circle";
 
 interface CirclesProps {
   circleState: CircleState;
+  setNumber: (updater: number | ((prev: number) => number)) => void;
 }
 
-const Circles = ({ circleState }: CirclesProps ) => {
+const Circles = ({ circleState, setNumber }: CirclesProps) => {
+  const sizes = [535, 450, 375, 300, 225, 150, 75];
+  const colors = [
+    circleState.purple,
+    circleState.pink,
+    circleState.blue,
+    circleState.green,
+    circleState.yellow,
+    circleState.orange,
+    circleState.red,
+  ];
 
- return (
-       <div className="w-2/3 h-2/3 flex justify-center items-center overflow-hidden">
+  return (
+    <div className="relative w-2/3 h-2/3 flex justify-center items-center overflow-hidden">
+      {sizes.map((size, index) => (
         <Circle
-          size={535}
-          circle = {circleState.purple}
-        >
-          <Circle
-            size={450}
-            circle = {circleState.pink}
-          >
-            <Circle
-              size={375}
-              circle = {circleState.blue}
-            >
-              <Circle
-                size={300}
-                circle = {circleState.green}
-              >
-                <Circle
-                  size={225}
-                  circle = {circleState.yellow}
-                >
-                  <Circle
-                    size={150}
-                    circle = {circleState.orange}
-                  >
-                    <Circle
-                      size={75}
-                      circle = {circleState.red}
-                    />
-                  </Circle>
-                </Circle>
-              </Circle>
-            </Circle>
-          </Circle>
-        </Circle>
-      </div>
- )
+          key={index}
+          size={size}
+          circle={colors[index]}
+          setNumber={setNumber}
+          style={{
+            position: 'absolute',
+            top: `calc(50% - ${size / 2}px)`,
+            left: `calc(50% - ${size / 2}px)`,
+          }}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default Circles;

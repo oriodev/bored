@@ -1,27 +1,36 @@
 "use client"
 
 import { Circle as CircleType } from "@/types";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface CircleProps {
   size: number;
-  circle: CircleType,
-  children?: ReactNode;
+  circle: CircleType;
+  setNumber: (updater: number | ((prev: number) => number)) => void;
+  style?: React.CSSProperties;
 }
 
-const Circle = ({ size, circle, children }: CircleProps) => {
-  const {colour, unlocked, speed, complete} = circle;
+const Circle = ({ size, circle, setNumber, style }: CircleProps) => {
+  const { colour, unlocked, speed } = circle;
   const [spacePressed, setSpacePressed] = useState(false);
+  const circleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (circle.auto) {
+    if (!circle.unlocked) {
       setSpacePressed(false);
       return;
     }
 
-    const handleAnimationIteration = () => {
-      if (complete) complete();
-      setSpacePressed(false)
+    const handleNumber = () => {
+      setNumber(prev => prev + 10);
+    }
+
+    const handleAnimationIteration = (event: AnimationEvent) => {
+      if (event.target === circleRef.current) {
+        setSpacePressed(false);
+      }
+
+      handleNumber();
     };
 
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -30,17 +39,18 @@ const Circle = ({ size, circle, children }: CircleProps) => {
       }
     };
 
-    window.addEventListener("animationiteration", handleAnimationIteration);
+    addEventListener("animationiteration", handleAnimationIteration);
     window.addEventListener("keydown", handleKeyPress);
 
     return () => {
-      window.removeEventListener("animationiteration", handleAnimationIteration);
+      removeEventListener("animationiteration", handleAnimationIteration);
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [complete, spacePressed, circle]);
+  }, [setNumber, spacePressed, circle]);
 
   return (
-    <div 
+    <div
+      ref={circleRef}
       className={`rounded-full flex justify-center items-center overflow-hidden`}
       style={{
         width: `${size}px`,
@@ -48,14 +58,13 @@ const Circle = ({ size, circle, children }: CircleProps) => {
         borderWidth: unlocked ? '25px' : '0px',
         borderStyle: 'solid',
         borderColor: `var(--${colour})`,
-        borderTopColor: `#ff0088`,
+        borderTopColor: '#ff0088',
         boxSizing: 'border-box',
-        position: 'relative',
+        position: 'absolute',
         animation: circle.auto || spacePressed ? `rotate ${speed}s linear infinite` : 'none',
+        ...style,
       }}
-    >
-      {children}
-    </div>
+    />
   );
 };
 

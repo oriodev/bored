@@ -18,14 +18,17 @@ const Buttons = ({ circleState, setCircleState, number, setNumber }: ButtonsProp
     if (number >= cost) {
       setNumber(prev => prev - cost); // payment for the upgrade
 
-      // CHECK FOR AUTO
+      // CHECK FOR AUTO && UNLOCK
       if (
           !circleState[colour].auto && // not already auto
           circleState[colour].upgradesUnlocked === circleState[colour].autoReq // hit the req for auto
         ) {
+
+          const toUnlock = circleState[colour].unlockedReq;
+
           setCircleState(
-            (prev: CircleState) => (
-              {
+            (prev: CircleState) => {
+              const updatedState = {
                 ...prev,
                 [colour]: {
                   ...prev[colour],
@@ -33,9 +36,19 @@ const Buttons = ({ circleState, setCircleState, number, setNumber }: ButtonsProp
                   speed: 10, // MAGIC NUMBER, FIX LATER
                   upgradesUnlocked: prev[colour].upgradesUnlocked + 1,
                 }
+              };
+
+              if (toUnlock) {
+                updatedState[toUnlock] = {
+                  ...prev[toUnlock],
+                  unlocked: true
+                };
               }
-            )
+
+              return updatedState;
+            }
           )
+
         }
 
       else {
@@ -69,6 +82,7 @@ const Buttons = ({ circleState, setCircleState, number, setNumber }: ButtonsProp
             colour={key} 
             handlePurchase={() => handlePurchase(key as CircleColor)} 
             cost={COST_BASE * circleState[key as CircleColor].upgradesUnlocked * circleState[key as CircleColor].costMultiplier}
+            num={number}
           />
         ))
       }
