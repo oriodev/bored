@@ -1,22 +1,26 @@
 "use client"
 
+import { Circle as CircleType } from "@/types";
 import { ReactNode, useEffect, useState } from "react";
 
 interface CircleProps {
   size: number;
-  color: string;
-  visible: boolean;
-  speed: number; 
-  onComplete?: () => void;
+  circle: CircleType,
   children?: ReactNode;
 }
 
-const Circle = ({ size, color, visible, speed, onComplete, children }: CircleProps) => {
+const Circle = ({ size, circle, children }: CircleProps) => {
+  const {colour, unlocked, speed, complete} = circle;
   const [spacePressed, setSpacePressed] = useState(false);
 
   useEffect(() => {
+    if (circle.auto) {
+      setSpacePressed(false);
+      return;
+    }
+
     const handleAnimationIteration = () => {
-      if (onComplete) onComplete();
+      if (complete) complete();
       setSpacePressed(false)
     };
 
@@ -33,7 +37,7 @@ const Circle = ({ size, color, visible, speed, onComplete, children }: CirclePro
       window.removeEventListener("animationiteration", handleAnimationIteration);
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [onComplete, spacePressed]);
+  }, [complete, spacePressed, circle]);
 
   return (
     <div 
@@ -41,13 +45,13 @@ const Circle = ({ size, color, visible, speed, onComplete, children }: CirclePro
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        borderWidth: visible ? '25px' : '0px',
+        borderWidth: unlocked ? '25px' : '0px',
         borderStyle: 'solid',
-        borderColor: `var(--${color})`,
+        borderColor: `var(--${colour})`,
         borderTopColor: `#ff0088`,
         boxSizing: 'border-box',
         position: 'relative',
-        animation: spacePressed ? `rotate ${speed}s linear infinite` : 'none',
+        animation: circle.auto || spacePressed ? `rotate ${speed}s linear infinite` : 'none',
       }}
     >
       {children}

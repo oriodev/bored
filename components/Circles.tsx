@@ -11,46 +11,31 @@ const Circles = ({ circleState }: CirclesProps ) => {
        <div className="w-2/3 h-2/3 flex justify-center items-center overflow-hidden">
         <Circle
           size={535}
-          color="purple"
-          visible={circleState.purple.visible}
-          speed={circleState.purple.speed}
+          circle = {circleState.purple}
         >
           <Circle
             size={450}
-            color="pink"
-            visible={circleState.pink.visible}
-            speed={circleState.pink.speed}
+            circle = {circleState.pink}
           >
             <Circle
               size={375}
-              color="blue"
-              visible={circleState.blue.visible}
-              speed={circleState.blue.speed}
+              circle = {circleState.blue}
             >
               <Circle
                 size={300}
-                color="green"
-                visible={circleState.green.visible}
-                speed={circleState.green.speed}
+                circle = {circleState.green}
               >
                 <Circle
-              size={225}
-              color="yellow"
-              visible={circleState.yellow.visible}
-              speed={circleState.yellow.speed}
+                  size={225}
+                  circle = {circleState.yellow}
                 >
                   <Circle
                     size={150}
-                    color="orange"
-                    visible={circleState.orange.visible}
-                    speed={circleState.orange.speed}
+                    circle = {circleState.orange}
                   >
                     <Circle
                       size={75}
-                      color="red"
-                      visible={circleState.red.visible}
-                      speed={circleState.red.speed}
-                      onComplete={circleState.red.complete}
+                      circle = {circleState.red}
                     />
                   </Circle>
                 </Circle>

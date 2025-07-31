@@ -1,4 +1,4 @@
-import { CircleState } from "@/types";
+import { CircleColor, CircleState } from "@/types";
 import Button from "./Button";
 
 interface ButtonsProps {
@@ -9,37 +9,69 @@ interface ButtonsProps {
 }
 
 const Buttons = ({ circleState, setCircleState, number, setNumber }: ButtonsProps) => {
+  const COST_BASE = 5;
 
-  const handlePurchaseRed = () => {
-    console.log('handling');
-    console.log('number: ', number)
+  const handlePurchase = (colour: CircleColor) => {
+    const cost = COST_BASE * circleState[colour].upgradesUnlocked * circleState[colour].costMultiplier;
 
-    if (number >= 5) {
-      console.log('hello')
-      setNumber(prev => prev - 5);
-      setCircleState(
-        (prev: CircleState) => (
-          {
-            ...prev,
-            red: {
-              ...prev.red,
-              speed: prev.red.speed * 0.75
+    // DO THE UPGRADE PURCHASE
+    if (number >= cost) {
+      setNumber(prev => prev - cost); // payment for the upgrade
+
+      // CHECK FOR AUTO
+      if (
+          !circleState[colour].auto && // not already auto
+          circleState[colour].upgradesUnlocked === circleState[colour].autoReq // hit the req for auto
+        ) {
+          setCircleState(
+            (prev: CircleState) => (
+              {
+                ...prev,
+                [colour]: {
+                  ...prev[colour],
+                  auto: true,
+                  speed: 10, // MAGIC NUMBER, FIX LATER
+                  upgradesUnlocked: prev[colour].upgradesUnlocked + 1,
+                }
+              }
+            )
+          )
+        }
+
+      else {
+        setCircleState(
+          (prev: CircleState) => (
+            {
+              ...prev,
+              [colour]: {
+                ...prev[colour],
+                speed: prev[colour].speed * prev[colour].speedMultipier,
+                upgradesUnlocked: prev[colour].upgradesUnlocked + 1,
+              }
             }
-          }
+          )
         )
-      )
+      }
+
     }
+
+
+
   }
 
   return (
     <div className="flex flex-wrap justify-center items-center gap-5">
-      <Button colour="red" handlePurchase={handlePurchaseRed} />
-      <Button colour="orange"  handlePurchase={handlePurchaseRed} />
-      <Button colour="yellow"  handlePurchase={handlePurchaseRed} />
-      <Button colour="green"  handlePurchase={handlePurchaseRed} />
-      <Button colour="blue"  handlePurchase={handlePurchaseRed} />
-      <Button colour="pink"  handlePurchase={handlePurchaseRed} />
-      <Button colour="purple"  handlePurchase={handlePurchaseRed} />
+      {
+        Object.entries(circleState).map(([key, circle]) => (
+          <Button 
+            key={key} 
+            circle={circle} 
+            colour={key} 
+            handlePurchase={() => handlePurchase(key as CircleColor)} 
+            cost={COST_BASE * circleState[key as CircleColor].upgradesUnlocked * circleState[key as CircleColor].costMultiplier}
+          />
+        ))
+      }
     </div>
   )
 }

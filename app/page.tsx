@@ -16,17 +16,87 @@ export default function Home() {
   }
 
   const [circleState, setCircleState] = useState<CircleState>({
-    red: { visible: true, speed: 1, amount: 10, complete: () => handleComplete('red') },
-    orange: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('orange') },
-    yellow: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('yellow') },
-    green: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('green') },
-    blue: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('blue') },
-    pink: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('pink') },
-    purple: { visible: false, speed: 100, amount: 1, complete: () => handleComplete('purple') }
+    red: { 
+      colour: 'red',
+      unlocked: true, 
+      unlockedReq: 0, // prev upgrades required to unlock this circle
+      auto: false, 
+      autoReq: 2, // upgrades required to make this circle auto
+      speed: 1, 
+      speedMultipier: 0.75, // baseline multiplier for this colour: static
+      costMultiplier: 1.5,
+      upgradesUnlocked: 1, // increases when u press the red button
+      amount: 10,
+      complete: () => handleComplete('red') 
+    },
+    orange: {
+      colour: 'orange', 
+      unlocked: false, 
+      unlockedReq: 10,
+      auto: false, 
+      speed: 100, 
+      speedMultipier: 0.8,
+      costMultiplier: 2,
+      upgradesUnlocked: 1,
+      amount: 1, 
+      complete: () => handleComplete('orange') 
+    },
+    yellow: { 
+      colour: 'yellow',
+      unlocked: false, 
+      auto: false, 
+      speed: 100, 
+      speedMultipier: 0.85,
+      costMultiplier: 5,
+      upgradesUnlocked: 1,
+      amount: 1, 
+      complete: () => handleComplete('yellow') 
+    },
+    green: { 
+      colour: 'green',
+      unlocked: false, 
+      auto: false, 
+      speed: 100, 
+      speedMultipier: 0.87,
+      costMultiplier: 7.5,
+      upgradesUnlocked: 1,
+      amount: 1, 
+      complete: () => handleComplete('green') 
+    },
+    blue: { 
+      colour: 'blue',
+      unlocked: false, 
+      auto: false, 
+      speed: 100, 
+      speedMultipier: 0.9,
+      costMultiplier: 10,
+      upgradesUnlocked: 1,
+      amount: 1, 
+      complete: () => handleComplete('blue') 
+    },
+    pink: { 
+      colour: 'pink',
+      unlocked: false, 
+      auto: false, 
+      speed: 100,
+      speedMultipier: 0.95,
+      costMultiplier: 20,
+      upgradesUnlocked: 1, 
+      amount: 1, 
+      complete: () => handleComplete('pink') 
+    },
+    purple: { 
+      colour: 'purple',
+      unlocked: false, 
+      auto: false, 
+      speed: 100, 
+      speedMultipier: 0.99,
+      costMultiplier: 50,
+      upgradesUnlocked: 1,
+      amount: 1, 
+      complete: () => handleComplete('purple') 
+    }
   });
-
-  // multiplier? speed multiplier and amount multiplier
-
 
   return (
     <div className="p-5 bg-black text-white w-screen h-screen flex flex-col items-center justify-center overflow-hidden">
