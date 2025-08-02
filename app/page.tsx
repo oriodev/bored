@@ -8,7 +8,7 @@ import { CircleState, PrestigeStore } from "@/types";
 import { useState } from "react";
 
 export default function Home() {
-  const [number, setNumber] = useState<number>(1000);
+  const [number, setNumber] = useState<number>(0);
   const [prestige, setPrestige] = useState<PrestigeStore>({
     prestige: 1,
     prestigeReq: 100,
