@@ -2,15 +2,16 @@
 
 import Buttons from "@/components/Buttons";
 import Circles from "@/components/Circles";
+import Number from "@/components/Number";
 import PrestigeButton from "@/components/PrestigeButton";
 import Speeds from "@/components/Speeds";
-import { CircleState, PrestigeStore } from "@/types";
+import { CircleState, PrestigeState } from "@/types";
 import { useState } from "react";
 
 export default function Home() {
   const [number, setNumber] = useState<number>(0);
-  const [prestige, setPrestige] = useState<PrestigeStore>({
-    prestige: 1,
+  const [prestige, setPrestige] = useState<PrestigeState>({
+    prestigeMultiplier: 1,
     prestigeReq: 100,
     prestigeAvailable: false
   });
@@ -19,19 +20,19 @@ export default function Home() {
     red: { 
       colour: 'red',
       unlocked: true, 
-      unlockedReq: 'orange', // what u unlock, not who unlocks u
-      auto: false, 
-      autoReq: 5, // upgrades required to make this circle auto
-      speed: 1, 
-      speedMultipier: 0.75, // baseline multiplier for this colour: static
-      costMultiplier: 1,
-      upgradesUnlocked: 1, // increases when u press the red button
-      numberMultiplier: 1,
+      unlockOnAuto: 'orange', // what u unlock, not who unlocks u
+      auto: false, // is it spinning?
+      autoReq: 5, // upgrades required to make this circle spin
+      speed: 1, // base speed for manual, switches to 10 on auto
+      speedMultipier: 0.75, // how much faster the speed gets on upgrade: remember 0 is fastest
+      costMultiplier: 1, // how much more expensive upgrades get
+      upgradesUnlocked: 1, // increases when u press the red button, how many upgrades u have bought
+      numberMultiplier: 1, // how many numbers this circle gets on rotation
     },
     orange: {
       colour: 'orange', 
       unlocked: false, 
-      unlockedReq: 'yellow',
+      unlockOnAuto: 'yellow',
       auto: false, 
       autoReq: 5,
       speed: 2, 
@@ -43,7 +44,7 @@ export default function Home() {
     yellow: { 
       colour: 'yellow',
       unlocked: false, 
-      unlockedReq: 'green',
+      unlockOnAuto: 'green',
       auto: false, 
       autoReq: 5,
       speed: 3, 
@@ -55,7 +56,7 @@ export default function Home() {
     green: { 
       colour: 'green',
       unlocked: false, 
-      unlockedReq: 'blue',
+      unlockOnAuto: 'blue',
       auto: false, 
       autoReq: 10,
       speed: 4, 
@@ -67,7 +68,7 @@ export default function Home() {
     blue: { 
       colour: 'blue',
       unlocked: false, 
-      unlockedReq: 'pink',
+      unlockOnAuto: 'pink',
       auto: false, 
       autoReq: 15,
       speed: 5, 
@@ -79,7 +80,7 @@ export default function Home() {
     pink: { 
       colour: 'pink',
       unlocked: false, 
-      unlockedReq: 'purple',
+      unlockOnAuto: 'purple',
       auto: false, 
       autoReq: 15,
       speed: 6,
@@ -91,7 +92,7 @@ export default function Home() {
     purple: { 
       colour: 'purple',
       unlocked: false, 
-      unlockedReq: null,
+      unlockOnAuto: null,
       auto: false, 
       autoReq: 20,
       speed: 7, 
@@ -106,7 +107,7 @@ export default function Home() {
     <div className="p-5 bg-black text-white w-screen h-screen flex flex-col items-center justify-center overflow-hidden">
       <div className="flex flex-col gap-5 justify-center items-center">
         <Speeds circleState={circleState} />
-        <p className="text-4xl font-black">{number.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 1})}</p>
+        <Number number={number} />
         <PrestigeButton prestige={prestige} setPrestige={setPrestige} circleState={circleState} setCircleState={setCircleState} />
         
       </div>

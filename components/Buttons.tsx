@@ -24,7 +24,7 @@ const Buttons = ({ circleState, setCircleState, number, setNumber}: ButtonsProps
           circleState[colour].upgradesUnlocked === circleState[colour].autoReq // hit the req for auto
         ) {
 
-          const toUnlock = circleState[colour].unlockedReq;
+          const toUnlock = circleState[colour].unlockOnAuto;
 
           setCircleState(
             (prev: CircleState) => {

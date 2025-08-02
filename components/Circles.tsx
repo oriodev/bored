@@ -1,10 +1,10 @@
-import { CircleState, PrestigeStore } from "@/types";
+import { CircleState, PrestigeState } from "@/types";
 import Circle from "./Circle";
 
 interface CirclesProps {
   circleState: CircleState;
-  prestige: PrestigeStore;
-  setPrestige: (updater: PrestigeStore | ((prev: PrestigeStore) => PrestigeStore)) => void;
+  prestige: PrestigeState;
+  setPrestige: (updater: PrestigeState | ((prev: PrestigeState) => PrestigeState)) => void;
   number: number;
   setNumber: (updater: number | ((prev: number) => number)) => void;
 }

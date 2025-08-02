@@ -11,7 +11,7 @@ export interface CircleState {
 export interface Circle {
   colour: CircleColor;
   unlocked: boolean; 
-  unlockedReq: CircleColor | null; 
+  unlockOnAuto: CircleColor | null; 
   auto: boolean;
   autoReq: number;
   speed: number;
@@ -23,8 +23,8 @@ export interface Circle {
 
 export type CircleColor = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'pink' | 'purple';
 
-export interface PrestigeStore {
-  prestige: number;
+export interface PrestigeState {
+  prestigeMultiplier: number;
   prestigeReq: number;
   prestigeAvailable: boolean;
 }

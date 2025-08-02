@@ -1,8 +1,8 @@
-import { CircleState, PrestigeStore } from "@/types";
+import { CircleState, PrestigeState } from "@/types";
 
 interface PrestigeButtonProps {
-  prestige: PrestigeStore;
-  setPrestige: (updater: PrestigeStore | ((prev: PrestigeStore) => PrestigeStore)) => void;
+  prestige: PrestigeState;
+  setPrestige: (updater: PrestigeState | ((prev: PrestigeState) => PrestigeState)) => void;
   circleState: CircleState;
   setCircleState: (x: CircleState | ((prev: CircleState) => CircleState)) => void;
 }
@@ -28,8 +28,8 @@ const PrestigeButton = ({ prestige, setPrestige, circleState, setCircleState }: 
   })
 
   const handlePrestige = () => {
-    setPrestige(prev => ({
-          prestige: prev.prestige + 1,
+    setPrestige((prev: PrestigeState) => ({
+          prestigeMultiplier: prev.prestigeMultiplier + 1,
           prestigeReq: prev.prestigeReq * 10,
           prestigeAvailable: false,
     }))

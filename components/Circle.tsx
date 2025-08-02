@@ -1,13 +1,13 @@
 "use client"
 
-import { Circle as CircleType, PrestigeStore } from "@/types";
+import { Circle as CircleType, PrestigeState } from "@/types";
 import { useEffect, useState, useRef } from "react";
 
 interface CircleProps {
   size: number;
   circle: CircleType;
-  prestige: PrestigeStore;
-  setPrestige: (updater: PrestigeStore | ((prev: PrestigeStore) => PrestigeStore)) => void;
+  prestige: PrestigeState;
+  setPrestige: (updater: PrestigeState | ((prev: PrestigeState) => PrestigeState)) => void;
   number: number;
   setNumber: (updater: number | ((prev: number) => number)) => void;
   style?: React.CSSProperties;
@@ -26,10 +26,10 @@ const Circle = ({ size, circle, prestige, setPrestige, number, setNumber, style 
 
     const handleNumber = () => {
 
-      setNumber(prev => prev + ( 1 * circle.numberMultiplier * prestige.prestige ));
+      setNumber(prev => prev + ( 1 * circle.numberMultiplier * prestige.prestigeMultiplier ));
 
       if (prestige.prestigeReq <= ( number + 1) ) {
-        setPrestige(prev => ({
+        setPrestige((prev: PrestigeState) => ({
           ...prev,
           prestigeAvailable: true,
         }))
