@@ -18,7 +18,7 @@ export interface Circle {
   speedMultipier: number;
   costMultiplier: number;
   upgradesUnlocked: number;
-  amount: number; 
+  numberMultiplier: number; 
 }
 
 export type CircleColor = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'pink' | 'purple';

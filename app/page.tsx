@@ -7,7 +7,7 @@ import { CircleState } from "@/types";
 import { useState } from "react";
 
 export default function Home() {
-  const [number, setNumber] = useState<number>(10000);
+  const [number, setNumber] = useState<number>(20);
 
 
   const [circleState, setCircleState] = useState<CircleState>({
@@ -19,9 +19,9 @@ export default function Home() {
       autoReq: 2, // upgrades required to make this circle auto
       speed: 1, 
       speedMultipier: 0.75, // baseline multiplier for this colour: static
-      costMultiplier: 1.5,
+      costMultiplier: 1,
       upgradesUnlocked: 1, // increases when u press the red button
-      amount: 10,
+      numberMultiplier: 1,
     },
     orange: {
       colour: 'orange', 
@@ -31,9 +31,9 @@ export default function Home() {
       autoReq: 2,
       speed: 1, 
       speedMultipier: 0.8,
-      costMultiplier: 5,
+      costMultiplier: 2,
       upgradesUnlocked: 1,
-      amount: 1, 
+      numberMultiplier: 2, 
     },
     yellow: { 
       colour: 'yellow',
@@ -45,7 +45,7 @@ export default function Home() {
       speedMultipier: 0.85,
       costMultiplier: 5,
       upgradesUnlocked: 1,
-      amount: 1, 
+      numberMultiplier: 3, 
     },
     green: { 
       colour: 'green',
@@ -55,9 +55,9 @@ export default function Home() {
       autoReq: 2,
       speed: 11, 
       speedMultipier: 0.87,
-      costMultiplier: 7.5,
+      costMultiplier: 10,
       upgradesUnlocked: 1,
-      amount: 1, 
+      numberMultiplier: 4, 
     },
     blue: { 
       colour: 'blue',
@@ -67,9 +67,9 @@ export default function Home() {
       autoReq: 2,
       speed: 11, 
       speedMultipier: 0.9,
-      costMultiplier: 10,
+      costMultiplier: 15,
       upgradesUnlocked: 1,
-      amount: 1, 
+      numberMultiplier: 5, 
     },
     pink: { 
       colour: 'pink',
@@ -81,7 +81,7 @@ export default function Home() {
       speedMultipier: 0.95,
       costMultiplier: 20,
       upgradesUnlocked: 1, 
-      amount: 1, 
+      numberMultiplier: 6, 
     },
     purple: { 
       colour: 'purple',
@@ -93,7 +93,7 @@ export default function Home() {
       speedMultipier: 0.99,
       costMultiplier: 50,
       upgradesUnlocked: 1,
-      amount: 1, 
+      numberMultiplier: 7, 
     }
   });
 

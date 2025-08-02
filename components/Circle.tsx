@@ -22,16 +22,19 @@ const Circle = ({ size, circle, setNumber, style }: CircleProps) => {
     }
 
     const handleNumber = () => {
-      setNumber(prev => prev + 10);
+      setNumber(prev => prev + ( 1 * circle.numberMultiplier ));
     }
 
     const handleAnimationIteration = (event: AnimationEvent) => {
       if (event.target === circleRef.current) {
         setSpacePressed(false);
+        handleNumber()
       }
 
-      handleNumber();
+
     };
+
+    // HANDLE ANIMATION END TO FIND END STATE
 
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.code === "Space" && !spacePressed) {
