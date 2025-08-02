@@ -22,3 +22,9 @@ export interface Circle {
 }
 
 export type CircleColor = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'pink' | 'purple';
+
+export interface PrestigeStore {
+  prestige: number;
+  prestigeReq: number;
+  prestigeAvailable: boolean;
+}

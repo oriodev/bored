@@ -14,7 +14,7 @@ const Button = ({ circle, colour, handlePurchase, cost, num }: ButtonProps ) => 
 
   return (
       <div 
-        className={`${ purchaseable ? 'opacity-100 hover:cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out' : locked ? 'opacity-0 hover:default' : 'opacity-50 hover:default'} h-[100px] w-[220px] rounded-lg p-2 pl-10 pr-10 flex flex-col justify-center items-center `}
+        className={`${ purchaseable ? 'opacity-100 hover:cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out' : locked ? 'opacity-10 hover:default' : 'opacity-50 hover:default'} h-[90px] w-[180px] rounded-lg p-2 pl-10 pr-10 flex flex-col justify-center items-center `}
         style={{
           backgroundColor: `var(--${colour})`,
           userSelect: 'none'
@@ -26,7 +26,7 @@ const Button = ({ circle, colour, handlePurchase, cost, num }: ButtonProps ) => 
         {
           circle.unlocked && (
             circle.upgradesUnlocked === ( circle.autoReq ) ? (
-              <p className="pt-0 text-black text-md">auto unlock for { cost }</p>
+              <p className="pt-0 text-black text-md text-center">auto unlock for { cost }</p>
              ) : (
               <>
                 <p className="pt-0 text-black text-md">cost: { cost }</p>

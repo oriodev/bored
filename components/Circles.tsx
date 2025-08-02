@@ -1,12 +1,15 @@
-import { CircleState } from "@/types";
+import { CircleState, PrestigeStore } from "@/types";
 import Circle from "./Circle";
 
 interface CirclesProps {
   circleState: CircleState;
+  prestige: PrestigeStore;
+  setPrestige: (updater: PrestigeStore | ((prev: PrestigeStore) => PrestigeStore)) => void;
+  number: number;
   setNumber: (updater: number | ((prev: number) => number)) => void;
 }
 
-const Circles = ({ circleState, setNumber }: CirclesProps) => {
+const Circles = ({ circleState, prestige, setPrestige, number, setNumber }: CirclesProps) => {
   const sizes = [535, 450, 375, 300, 225, 150, 75];
   const colors = [
     circleState.purple,
@@ -19,12 +22,15 @@ const Circles = ({ circleState, setNumber }: CirclesProps) => {
   ];
 
   return (
-    <div className="relative w-2/3 h-2/3 flex justify-center items-center overflow-hidden">
+    <div className="relative w-2/3 h-2/3 m-5 flex justify-center items-center overflow-hidden">
       {sizes.map((size, index) => (
         <Circle
           key={index}
           size={size}
           circle={colors[index]}
+          prestige={prestige}
+          setPrestige={setPrestige}
+          number={number}
           setNumber={setNumber}
           style={{
             position: 'absolute',

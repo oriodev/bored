@@ -8,7 +8,7 @@ interface ButtonsProps {
   setNumber: (updater: number | ((prev: number) => number)) => void;
 }
 
-const Buttons = ({ circleState, setCircleState, number, setNumber }: ButtonsProps) => {
+const Buttons = ({ circleState, setCircleState, number, setNumber}: ButtonsProps) => {
   const COST_BASE = 5;
 
   const handlePurchase = (colour: CircleColor) => {
@@ -67,9 +67,6 @@ const Buttons = ({ circleState, setCircleState, number, setNumber }: ButtonsProp
       }
 
     }
-
-
-
   }
 
   return (
