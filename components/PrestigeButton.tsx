@@ -24,7 +24,7 @@ const PrestigeButton = ({ prestige, setPrestige, circleState, setCircleState }: 
     unlocked: circle === 'red' ? true : false,
     auto: false,
     speed: speeds[circle],
-    upgradesUnlocked: 1
+    upgradesUnlocked: 0
   })
 
   const handlePrestige = () => {
