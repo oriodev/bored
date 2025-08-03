@@ -1,4 +1,5 @@
 import { Circle } from "@/types";
+import { formatNumber } from "@/utils/numbers.utils";
 
 interface ButtonProps {
   circle: Circle;
@@ -26,10 +27,10 @@ const Button = ({ circle, colour, handlePurchase, cost, num }: ButtonProps ) => 
         {
           circle.unlocked && (
             circle.upgradesUnlocked === ( circle.autoReq ) ? (
-              <p className="pt-0 text-black text-md md:text-lg text-center">auto unlock for { cost }</p>
+              <p className="pt-0 text-black text-md md:text-lg text-center">auto unlock for { formatNumber(cost) }</p>
              ) : (
               <>
-                <p className="pt-0 text-black text-md md:font-bold md:text-xl text-center">{ cost } </p>
+                <p className="pt-0 text-black text-md md:text-xl text-center">{ formatNumber(cost) } </p>
               </>
             )
           )
