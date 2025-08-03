@@ -60,7 +60,7 @@ const Circle = ({ size, circle, prestige, setPrestige, number, setNumber, style 
       removeEventListener("animationiteration", handleAnimationIteration);
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [setNumber, spacePressed, circle]);
+  }, [setNumber, spacePressed, circle, number, prestige.prestigeReq, prestige.prestigeMultiplier, setPrestige]);
 
   return (
     <div

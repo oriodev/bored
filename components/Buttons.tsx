@@ -1,4 +1,4 @@
-import { Circle, CircleColor, CircleState } from "@/types";
+import { CircleColor, CircleState } from "@/types";
 import Button from "./Button";
 
 interface ButtonsProps {
@@ -9,10 +9,8 @@ interface ButtonsProps {
 }
 
 const Buttons = ({ circleState, setCircleState, number, setNumber}: ButtonsProps) => {
-  //const COST_BASE = 5;
 
   const handlePurchase = (colour: CircleColor) => {
-    //const cost = COST_BASE * circleState[colour].upgradesUnlocked * circleState[colour].costMultiplier;
     const cost =
       Math.ceil(circleState[colour].baseCost *
             circleState[colour].costMultiplier **
@@ -83,7 +81,6 @@ const Buttons = ({ circleState, setCircleState, number, setNumber}: ButtonsProps
             circle={circle}
             colour={key}
             handlePurchase={() => handlePurchase(key as CircleColor)}
-            //cost={COST_BASE * circleState[key as CircleColor].upgradesUnlocked * circleState[key as CircleColor].costMultiplier}
             cost={
               Math.ceil(circleState[key as CircleColor].baseCost *
               (circleState[key as CircleColor].costMultiplier **
