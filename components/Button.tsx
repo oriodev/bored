@@ -30,7 +30,7 @@ const Button = ({ circle, colour, handlePurchase, cost, num }: ButtonProps ) => 
              ) : (
               <>
                 <p className="pt-0 text-black text-md">cost: { cost }</p>
-                <p className="pt-0 text-black text-md">bought: { circle.upgradesUnlocked - 1 || 0 }</p>
+                <p className="pt-0 text-black text-md">bought: { circle.upgradesUnlocked || 0 }</p>
               </>
             )
           )

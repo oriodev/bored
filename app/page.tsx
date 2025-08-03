@@ -25,9 +25,10 @@ export default function Home() {
       autoReq: 5, // upgrades required to make this circle spin
       speed: 1, // base speed for manual, switches to 10 on auto
       speedMultipier: 0.75, // how much faster the speed gets on upgrade: remember 0 is fastest
-      costMultiplier: 1, // how much more expensive upgrades get
-      upgradesUnlocked: 1, // increases when u press the red button, how many upgrades u have bought
+      costMultiplier: 1.1, // how much more expensive upgrades get
+      upgradesUnlocked: 0, // increases when u press the red button, how many upgrades u have bought
       numberMultiplier: 1, // how many numbers this circle gets on rotation
+      baseCost: 5,
     },
     orange: {
       colour: 'orange', 
@@ -37,9 +38,10 @@ export default function Home() {
       autoReq: 5,
       speed: 2, 
       speedMultipier: 0.8,
-      costMultiplier: 2,
-      upgradesUnlocked: 1,
-      numberMultiplier: 3, 
+      costMultiplier: 1.15,
+      upgradesUnlocked: 0,
+      numberMultiplier: 5, 
+      baseCost: 10,
     },
     yellow: { 
       colour: 'yellow',
@@ -49,9 +51,10 @@ export default function Home() {
       autoReq: 5,
       speed: 3, 
       speedMultipier: 0.85,
-      costMultiplier: 5,
-      upgradesUnlocked: 1,
-      numberMultiplier: 5, 
+      costMultiplier: 1.2,
+      upgradesUnlocked: 0,
+      numberMultiplier: 10,
+      baseCost: 50,
     },
     green: { 
       colour: 'green',
@@ -61,9 +64,10 @@ export default function Home() {
       autoReq: 10,
       speed: 4, 
       speedMultipier: 0.87,
-      costMultiplier: 10,
-      upgradesUnlocked: 1,
-      numberMultiplier: 7, 
+      costMultiplier: 1.25,
+      upgradesUnlocked: 0,
+      numberMultiplier: 20,
+      baseCost: 150,
     },
     blue: { 
       colour: 'blue',
@@ -73,9 +77,10 @@ export default function Home() {
       autoReq: 15,
       speed: 5, 
       speedMultipier: 0.9,
-      costMultiplier: 15,
-      upgradesUnlocked: 1,
-      numberMultiplier: 8, 
+      costMultiplier: 1.3,
+      upgradesUnlocked: 0,
+      numberMultiplier: 40,
+      baseCost: 1500,
     },
     pink: { 
       colour: 'pink',
@@ -85,9 +90,10 @@ export default function Home() {
       autoReq: 15,
       speed: 6,
       speedMultipier: 0.95,
-      costMultiplier: 20,
-      upgradesUnlocked: 1, 
-      numberMultiplier: 9, 
+      costMultiplier: 1.35,
+      upgradesUnlocked: 0, 
+      numberMultiplier: 75, 
+      baseCost: 25000,
     },
     purple: { 
       colour: 'purple',
@@ -97,9 +103,10 @@ export default function Home() {
       autoReq: 20,
       speed: 7, 
       speedMultipier: 0.99,
-      costMultiplier: 50,
-      upgradesUnlocked: 1,
-      numberMultiplier: 10, 
+      costMultiplier: 1.4,
+      upgradesUnlocked: 0,
+      numberMultiplier: 100,
+      baseCost: 250000,
     }
   });
 

@@ -1,4 +1,4 @@
-import { CircleColor, CircleState } from "@/types";
+import { Circle, CircleColor, CircleState } from "@/types";
 import Button from "./Button";
 
 interface ButtonsProps {
@@ -9,10 +9,15 @@ interface ButtonsProps {
 }
 
 const Buttons = ({ circleState, setCircleState, number, setNumber}: ButtonsProps) => {
-  const COST_BASE = 5;
+  //const COST_BASE = 5;
 
   const handlePurchase = (colour: CircleColor) => {
-    const cost = COST_BASE * circleState[colour].upgradesUnlocked * circleState[colour].costMultiplier;
+    //const cost = COST_BASE * circleState[colour].upgradesUnlocked * circleState[colour].costMultiplier;
+    const cost =
+      Math.ceil(circleState[colour].baseCost *
+            circleState[colour].costMultiplier **
+              circleState[colour].upgradesUnlocked
+            * 10 ) / 10 // format it to 1 d.p. but only if needed
 
     // DO THE UPGRADE PURCHASE
     if (number >= cost) {
@@ -73,18 +78,23 @@ const Buttons = ({ circleState, setCircleState, number, setNumber}: ButtonsProps
     <div className="flex flex-wrap justify-center items-center gap-5">
       {
         Object.entries(circleState).map(([key, circle]) => (
-          <Button 
-            key={key} 
-            circle={circle} 
-            colour={key} 
-            handlePurchase={() => handlePurchase(key as CircleColor)} 
-            cost={COST_BASE * circleState[key as CircleColor].upgradesUnlocked * circleState[key as CircleColor].costMultiplier}
-            num={number}
-          />
-        ))
-      }
+          <Button
+            key={key}
+            circle={circle}
+            colour={key}
+            handlePurchase={() => handlePurchase(key as CircleColor)}
+            //cost={COST_BASE * circleState[key as CircleColor].upgradesUnlocked * circleState[key as CircleColor].costMultiplier}
+            cost={
+              Math.ceil(circleState[key as CircleColor].baseCost *
+              (circleState[key as CircleColor].costMultiplier **
+                circleState[key as CircleColor].upgradesUnlocked)
+              * 10 ) / 10 // format it to 1 d.p. but only if needed
+            }
+          num={number}
+        />
+      ))}
     </div>
-  )
+  );
 }
 
 export default Buttons;
