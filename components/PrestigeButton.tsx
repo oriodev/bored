@@ -31,7 +31,7 @@ const PrestigeButton = ({ prestige, setPrestige, circleState, setCircleState }: 
     if (!prestige.prestigeAvailable) return;
 
     setPrestige((prev: PrestigeState) => ({
-          prestigeMultiplier: prev.prestigeMultiplier + 1,
+          prestigeMultiplier: prev.prestigeMultiplier * 2,
           prestigeReq: prev.prestigeReq * 10,
           prestigeAvailable: false,
     }))
