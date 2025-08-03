@@ -9,7 +9,7 @@ import { CircleState, PrestigeState } from "@/types";
 import { useState } from "react";
 
 export default function Home() {
-  const [number, setNumber] = useState<number>(999999999999999);
+  const [number, setNumber] = useState<number>(0);
   const [prestige, setPrestige] = useState<PrestigeState>({
     prestigeMultiplier: 1,
     prestigeReq: 100,
