@@ -73,7 +73,7 @@ const Buttons = ({ circleState, setCircleState, number, setNumber}: ButtonsProps
   }
 
   return (
-    <div className="flex flex-wrap justify-center items-center gap-5">
+    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-5">
       {
         Object.entries(circleState).map(([key, circle]) => (
           <Button

@@ -1,5 +1,6 @@
 import { CircleState, PrestigeState } from "@/types";
 import Circle from "./Circle";
+import { useState, useEffect } from "react";
 
 interface CirclesProps {
   circleState: CircleState;
@@ -10,7 +11,33 @@ interface CirclesProps {
 }
 
 const Circles = ({ circleState, prestige, setPrestige, number, setNumber }: CirclesProps) => {
-  const sizes = [535, 450, 375, 300, 225, 150, 75];
+  const [sizes, setSizes] = useState([535, 450, 375, 300, 225, 150, 75]);
+
+  useEffect(() => {
+    const calculateSizes = () => {
+      if (typeof window !== 'undefined') {
+        const baseWidth = window.innerWidth;
+        const scaleFactor = baseWidth < 640 ? 0.5 : baseWidth < 1024 ? 0.7 : 1;
+        const newSizes = [
+          Math.floor(535 * scaleFactor),
+          Math.floor(450 * scaleFactor),
+          Math.floor(375 * scaleFactor),
+          Math.floor(300 * scaleFactor),
+          Math.floor(225 * scaleFactor),
+          Math.floor(150 * scaleFactor),
+          Math.floor(75 * scaleFactor)
+        ];
+        setSizes(newSizes);
+      }
+    };
+
+    calculateSizes();
+
+    window.addEventListener('resize', calculateSizes);
+
+    return () => window.removeEventListener('resize', calculateSizes);
+  }, []);
+
   const colors = [
     circleState.purple,
     circleState.pink,
@@ -22,7 +49,7 @@ const Circles = ({ circleState, prestige, setPrestige, number, setNumber }: Circ
   ];
 
   return (
-    <div className="relative w-2/3 h-2/3 m-5 flex justify-center items-center overflow-hidden">
+    <div className="relative w-full h-2/3 m-5 flex justify-center items-center overflow-hidden">
       {sizes.map((size, index) => (
         <Circle
           key={index}

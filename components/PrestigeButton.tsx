@@ -28,6 +28,8 @@ const PrestigeButton = ({ prestige, setPrestige, circleState, setCircleState }: 
   })
 
   const handlePrestige = () => {
+    if (!prestige.prestigeAvailable) return;
+
     setPrestige((prev: PrestigeState) => ({
           prestigeMultiplier: prev.prestigeMultiplier + 1,
           prestigeReq: prev.prestigeReq * 10,
@@ -47,7 +49,7 @@ const PrestigeButton = ({ prestige, setPrestige, circleState, setCircleState }: 
 
   return (
     <div
-      className={`${prestige.prestigeAvailable ? 'opacity-100' : 'opacity-0'} hover:cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out h-[50px] w-[150px] rounded-lg p-2 pl-10 pr-10 flex flex-col justify-center items-center `}
+      className={`${prestige.prestigeAvailable ? 'opacity-100 hover:cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out' : 'opacity-0 hover:cursor-default'} h-30px md:h-[50px] md:w-[150px] rounded-lg p-2 pl-10 pr-10 flex flex-col justify-center items-center `}
       style={{
       backgroundColor: '#ff0088',
       userSelect: 'none'

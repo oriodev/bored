@@ -53,23 +53,29 @@ const Circle = ({ size, circle, prestige, setPrestige, number, setNumber, style 
       }
     };
 
+    const handleTouchStart = (event: TouchEvent) => {
+      event.preventDefault();
+      if (!spacePressed) setSpacePressed(true);
+    }
+
     addEventListener("animationiteration", handleAnimationIteration);
     window.addEventListener("keydown", handleKeyPress);
+    window.addEventListener("touchstart", handleTouchStart);
 
     return () => {
       removeEventListener("animationiteration", handleAnimationIteration);
       window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("touchstart", handleTouchStart);
     };
   }, [setNumber, spacePressed, circle, number, prestige.prestigeReq, prestige.prestigeMultiplier, setPrestige]);
 
   return (
     <div
       ref={circleRef}
-      className={`rounded-full flex justify-center items-center overflow-hidden`}
+      className={`${ unlocked ? 'border-[10px] sm:border-[15px] md:border-[20px] lg:border-[25px]' : 'border-0' } rounded-full flex justify-center items-center overflow-hidden`}
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        borderWidth: unlocked ? '25px' : '0px',
         borderStyle: 'solid',
         borderColor: `var(--${colour})`,
         borderTopColor: '#ff0088',

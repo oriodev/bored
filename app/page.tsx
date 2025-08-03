@@ -9,7 +9,7 @@ import { CircleState, PrestigeState } from "@/types";
 import { useState } from "react";
 
 export default function Home() {
-  const [number, setNumber] = useState<number>(0);
+  const [number, setNumber] = useState<number>(999999999999999);
   const [prestige, setPrestige] = useState<PrestigeState>({
     prestigeMultiplier: 1,
     prestigeReq: 100,
@@ -116,10 +116,11 @@ export default function Home() {
         <Speeds circleState={circleState} />
         <Number number={number} />
         <PrestigeButton prestige={prestige} setPrestige={setPrestige} circleState={circleState} setCircleState={setCircleState} />
-        
       </div>
       <Circles circleState={circleState} prestige={prestige} setPrestige={setPrestige} number={number} setNumber={setNumber}  />
-      <Buttons circleState={circleState} setCircleState={setCircleState} number={number} setNumber={setNumber} />
+      <div className="max-h-[33vh]">
+        <Buttons circleState={circleState} setCircleState={setCircleState} number={number} setNumber={setNumber} />
+      </div>
  </div>
   );
 }
