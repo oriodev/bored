@@ -1,14 +1,18 @@
 'use client'
 
-import Buttons from "@/components/Buttons";
-import Circles from "@/components/Circles";
-import Number from "@/components/Number";
-import PrestigeButton from "@/components/PrestigeButton";
-import Speeds from "@/components/Speeds";
-import { CircleState, PrestigeState } from "@/types";
 import { useState } from "react";
 
+import { CircleState, PrestigeState } from "@/types";
+
+import Buttons from "@/components/gameplay/Buttons";
+import Circles from "@/components/gameplay/Circles";
+import Number from "@/components/gameplay/Number";
+import PrestigeButton from "@/components/gameplay/PrestigeButton";
+import Tutorial from "@/components/Tutorial";
+import TopBar from "@/components/TopBar";
+
 export default function Home() {
+  const [tutorialVisible, setTutorialVisible] = useState(false)
   const [number, setNumber] = useState<number>(0);
   const [prestige, setPrestige] = useState<PrestigeState>({
     prestigeMultiplier: 1,
@@ -112,8 +116,8 @@ export default function Home() {
 
   return (
     <div className="p-5 bg-black text-white w-screen h-screen flex flex-col items-center justify-center overflow-hidden">
-      <div className="flex flex-col gap-5 justify-center items-center">
-        <Speeds circleState={circleState} />
+      <div className="w-full flex flex-col gap-5 justify-center items-center">
+        <TopBar circleState={circleState} tutorialVisible={tutorialVisible} setTutorialVisible={setTutorialVisible} />
         <Number number={number} />
         <PrestigeButton prestige={prestige} setPrestige={setPrestige} circleState={circleState} setCircleState={setCircleState} />
       </div>
@@ -121,6 +125,7 @@ export default function Home() {
       <div className="max-h-[33vh]">
         <Buttons circleState={circleState} setCircleState={setCircleState} number={number} setNumber={setNumber} />
       </div>
+      <Tutorial visible={tutorialVisible} />
  </div>
   );
 }
