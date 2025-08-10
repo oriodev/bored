@@ -1,50 +1,18 @@
-import { CircleState, PrestigeState } from "@/types";
+import { CircleState, PrestigeState, SetCircleState, SetPrestige } from "@/types";
+import { prestigeReset } from "@/utils/state.utils";
 
 interface PrestigeButtonProps {
   prestige: PrestigeState;
-  setPrestige: (updater: PrestigeState | ((prev: PrestigeState) => PrestigeState)) => void;
+  setPrestige: SetPrestige;
   circleState: CircleState;
-  setCircleState: (x: CircleState | ((prev: CircleState) => CircleState)) => void;
+  setCircleState: SetCircleState;
 }
 
 const PrestigeButton = ({ prestige, setPrestige, circleState, setCircleState }: PrestigeButtonProps) => {
 
-  const speeds = {
-    red: 1,
-    orange: 2,
-    yellow: 3,
-    green: 4,
-    blue: 5,
-    pink: 6,
-    purple: 7
-  }
-
-  const resetToDefault = (circle: keyof CircleState) => ({
-    ...circleState[circle],
-    unlocked: circle === 'red' ? true : false,
-    auto: false,
-    speed: speeds[circle],
-    upgradesUnlocked: 0
-  })
-
   const handlePrestige = () => {
     if (!prestige.prestigeAvailable) return;
-
-    setPrestige((prev: PrestigeState) => ({
-          prestigeMultiplier: prev.prestigeMultiplier + 1,
-          prestigeReq: prev.prestigeReq * 10,
-          prestigeAvailable: false,
-    }))
-
-    setCircleState(prevState => {
-      const newState = { ...prevState };
-      (Object.keys(newState) as Array<keyof CircleState>).forEach(circle => {
-        newState[circle] = resetToDefault(circle);
-      });
-
-      return newState;
-    })
-
+    prestigeReset(setCircleState, setPrestige);
   }
 
   return (

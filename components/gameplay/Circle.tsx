@@ -1,15 +1,15 @@
 "use client"
 
-import { Circle as CircleType, PrestigeState } from "@/types";
+import { Circle as CircleType, PrestigeState, SetNumber, SetPrestige } from "@/types";
 import { useEffect, useState, useRef } from "react";
 
 interface CircleProps {
   size: number;
   circle: CircleType;
   prestige: PrestigeState;
-  setPrestige: (updater: PrestigeState | ((prev: PrestigeState) => PrestigeState)) => void;
+  setPrestige: SetPrestige;
   number: number;
-  setNumber: (updater: number | ((prev: number) => number)) => void;
+  setNumber: SetNumber;
   style?: React.CSSProperties;
 }
 

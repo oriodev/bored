@@ -1,11 +1,11 @@
-import { CircleColor, CircleState } from "@/types";
-import Button from "./Button";
+import { CircleColor, CircleState, SetCircleState, SetNumber } from "@/types";
+import Button from "./UpgradeButton";
 
 interface ButtonsProps {
   circleState: CircleState;
-  setCircleState: (x: CircleState | ((prev: CircleState) => CircleState)) => void;
+  setCircleState: SetCircleState;
   number: number;
-  setNumber: (updater: number | ((prev: number) => number)) => void;
+  setNumber: SetNumber;
 }
 
 const Buttons = ({ circleState, setCircleState, number, setNumber}: ButtonsProps) => {

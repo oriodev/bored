@@ -1,3 +1,9 @@
+export interface GameState {
+  number: number;
+  prestige: PrestigeState;
+  circleState: CircleState
+}
+
 export interface CircleState {
   red: Circle;
   orange: Circle;
@@ -29,3 +35,7 @@ export interface PrestigeState {
   prestigeReq: number;
   prestigeAvailable: boolean;
 }
+
+export type SetNumber = (updater: number | ((prev: number) => number)) => void;
+export type SetCircleState = (updater: CircleState | ((prev: CircleState) => CircleState)) => void;
+export type SetPrestige = (updater: PrestigeState | ((prev: PrestigeState) => PrestigeState)) => void;

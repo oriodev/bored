@@ -1,13 +1,13 @@
-import { CircleState, PrestigeState } from "@/types";
+import { CircleState, PrestigeState, SetNumber, SetPrestige } from "@/types";
 import Circle from "./Circle";
 import { useState, useEffect } from "react";
 
 interface CirclesProps {
   circleState: CircleState;
   prestige: PrestigeState;
-  setPrestige: (updater: PrestigeState | ((prev: PrestigeState) => PrestigeState)) => void;
+  setPrestige: SetPrestige;
   number: number;
-  setNumber: (updater: number | ((prev: number) => number)) => void;
+  setNumber: SetNumber;
 }
 
 const Circles = ({ circleState, prestige, setPrestige, number, setNumber }: CirclesProps) => {
