@@ -17,7 +17,7 @@ const Tutorial = ({ visible }: TutorialProps) => {
         <div className="flex flex-col gap-1 text-lg">
           <p>1. press the space bar or tap the screen to make the circle spin</p>
           <p>2. buy upgrades to make the circle spin faster</p>
-          <p>3. unlock auto upgrades to make the circle spin on it's own and unlock the next circle</p>
+          <p>3. unlock auto upgrades to make the circle spin on it&apos;s own and unlock the next circle</p>
           <p>4. prestige for a permanent upgrade to how many numbers each spin gives</p>
           <p>5. the goal is to make all of the circles spin so fast they stop</p>
         </div>

@@ -74,7 +74,6 @@ export default function Home() {
         <PrestigeButton
           prestige={prestige}
           setPrestige={setPrestige}
-          circleState={circleState}
           setCircleState={setCircleState} 
         />
       </div>

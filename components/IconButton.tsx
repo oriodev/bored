@@ -1,5 +1,4 @@
 import { IconType } from "react-icons";
-import { BiCloud } from "react-icons/bi";
 
 interface IconButtonProps {
   handleOnClick: () => void;
