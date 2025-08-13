@@ -50,7 +50,7 @@ export const CIRCLE_STATE_DEFAULT_DATA = {
       speedMultipier: 0.87,
       costMultiplier: 1.225,
       upgradesUnlocked: 0,
-      numberMultiplier: 75,
+      numberMultiplier: 500,
       baseCost: 150,
     },
     blue: { 
@@ -63,7 +63,7 @@ export const CIRCLE_STATE_DEFAULT_DATA = {
       speedMultipier: 0.9,
       costMultiplier: 1.25,
       upgradesUnlocked: 0,
-      numberMultiplier: 750,
+      numberMultiplier: 2000,
       baseCost: 1500,
     },
     pink: { 
@@ -76,7 +76,7 @@ export const CIRCLE_STATE_DEFAULT_DATA = {
       speedMultipier: 0.925,
       costMultiplier: 1.275,
       upgradesUnlocked: 0, 
-      numberMultiplier: 50000, 
+      numberMultiplier: 100000, 
       baseCost: 100000,
     },
     purple: { 
@@ -86,7 +86,7 @@ export const CIRCLE_STATE_DEFAULT_DATA = {
       auto: false, 
       autoReq: 20,
       speed: 7, 
-      speedMultipier: 0.95,
+      speedMultipier: 0.93,
       costMultiplier: 1.3,
       upgradesUnlocked: 0,
       numberMultiplier: 500000,
@@ -101,3 +101,11 @@ export const PRESTIGE_DEFAULT_DATA = {
 }
 
 export const NUMBER_DEFAULT_DATA = 0;
+export const TUTORIAL_DEFAULT_DATA = true;
+
+
+// DETERMINES WHAT NUMBER IS ADDED ON EACH SPIN
+export const DETERMINE_NUMBER = (numberMultiplier: number, prestigeMultiplier: number): number => {
+  return 1 * numberMultiplier * ( prestigeMultiplier  );
+}
+

@@ -1,7 +1,8 @@
 export interface GameState {
   number: number;
   prestige: PrestigeState;
-  circleState: CircleState
+  circleState: CircleState;
+  tutorialVisible: boolean;
 }
 
 export interface CircleState {
@@ -39,3 +40,4 @@ export interface PrestigeState {
 export type SetNumber = (updater: number | ((prev: number) => number)) => void;
 export type SetCircleState = (updater: CircleState | ((prev: CircleState) => CircleState)) => void;
 export type SetPrestige = (updater: PrestigeState | ((prev: PrestigeState) => PrestigeState)) => void;
+export type SetTutorialVisible = (updater: boolean | ((prev: boolean) => boolean)) => void;

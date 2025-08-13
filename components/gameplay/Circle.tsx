@@ -1,5 +1,6 @@
 "use client"
 
+import { DETERMINE_NUMBER } from "@/app/data/gamestate.data";
 import { Circle as CircleType, PrestigeState, SetNumber, SetPrestige } from "@/types";
 import { useEffect, useState, useRef } from "react";
 
@@ -26,7 +27,7 @@ const Circle = ({ size, circle, prestige, setPrestige, number, setNumber, style 
 
     const handleNumber = () => {
 
-      setNumber(prev => prev + ( 1 * circle.numberMultiplier * prestige.prestigeMultiplier ));
+      setNumber(prev => prev + DETERMINE_NUMBER(circle.numberMultiplier, prestige.prestigeMultiplier) );
 
       if (prestige.prestigeReq <= ( number + 1) ) {
         setPrestige((prev: PrestigeState) => ({

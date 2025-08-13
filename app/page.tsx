@@ -11,12 +11,12 @@ import PrestigeButton from "@/components/gameplay/PrestigeButton";
 import Tutorial from "@/components/Tutorial";
 import TopBar from "@/components/TopBar";
 
-import { CIRCLE_STATE_DEFAULT_DATA, NUMBER_DEFAULT_DATA, PRESTIGE_DEFAULT_DATA } from "./data/gamestate.data";
+import { CIRCLE_STATE_DEFAULT_DATA, NUMBER_DEFAULT_DATA, PRESTIGE_DEFAULT_DATA, TUTORIAL_DEFAULT_DATA } from "./data/gamestate.data";
 
 export default function Home() {
 
   // SET ALL OF THE DEFAULT STATES.
-  const [tutorialVisible, setTutorialVisible] = useState(false)
+  const [tutorialVisible, setTutorialVisible] = useState(TUTORIAL_DEFAULT_DATA)
   const [number, setNumber] = useState<number>(NUMBER_DEFAULT_DATA);
   const [prestige, setPrestige] = useState<PrestigeState>(PRESTIGE_DEFAULT_DATA);
   const [circleState, setCircleState] = useState<CircleState>(CIRCLE_STATE_DEFAULT_DATA);
@@ -34,6 +34,7 @@ export default function Home() {
       setNumber(loadedGame.number)
       setPrestige(loadedGame.prestige)
       setCircleState(loadedGame.circleState)
+      setTutorialVisible(loadedGame.tutorialVisible)
     }
   }, [])
 
@@ -43,7 +44,8 @@ export default function Home() {
       const gameToSave: GameState = {
         number,
         prestige,
-        circleState
+        circleState,
+        tutorialVisible
       }
       localStorage.setItem('gameState', JSON.stringify(gameToSave));
     }
@@ -75,6 +77,7 @@ export default function Home() {
           prestige={prestige}
           setPrestige={setPrestige}
           setCircleState={setCircleState} 
+          setNumber={setNumber}
         />
       </div>
 
@@ -94,7 +97,7 @@ export default function Home() {
           setNumber={setNumber} 
         />
       </div>
-      <Tutorial visible={tutorialVisible} />
+      <Tutorial visible={tutorialVisible} setTutorialVisible={setTutorialVisible} />
  </div>
   );
 }

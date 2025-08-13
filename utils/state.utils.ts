@@ -12,10 +12,12 @@ export const setToDefault = (
 }
 
 export const prestigeReset = (
+  setNumber: SetNumber,
   setCircleState: SetCircleState,
   setPrestige: SetPrestige
 ) => {
   setCircleState(CIRCLE_STATE_DEFAULT_DATA)
+  setNumber(NUMBER_DEFAULT_DATA)
 
   setPrestige((prev: PrestigeState) => ({
     prestigeMultiplier: prev.prestigeMultiplier + 1,

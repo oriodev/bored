@@ -1,17 +1,18 @@
-import { CircleState, PrestigeState, SetCircleState, SetPrestige } from "@/types";
+import { CircleState, PrestigeState, SetCircleState, SetNumber, SetPrestige } from "@/types";
 import { prestigeReset } from "@/utils/state.utils";
 
 interface PrestigeButtonProps {
   prestige: PrestigeState;
   setPrestige: SetPrestige;
   setCircleState: SetCircleState;
+  setNumber: SetNumber;
 }
 
-const PrestigeButton = ({ prestige, setPrestige, setCircleState }: PrestigeButtonProps) => {
+const PrestigeButton = ({ prestige, setPrestige, setCircleState, setNumber }: PrestigeButtonProps) => {
 
   const handlePrestige = () => {
     if (!prestige.prestigeAvailable) return;
-    prestigeReset(setCircleState, setPrestige);
+    prestigeReset(setNumber, setCircleState, setPrestige);
   }
 
   return (
